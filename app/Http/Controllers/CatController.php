@@ -11,11 +11,6 @@ class CatController extends Controller
     {
         //to get all records from Cats
         $cats = Cat::get();
-
-        //dump and die method for show and exit
-        //work with symphony package
-        // dd($cats);
-
         //see Views folder
         //we can use / or . 
         //first paramater in the element of the array to use in view
