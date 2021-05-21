@@ -10,6 +10,7 @@
 
 <body>
     <h1>Add Categoryy</h1>
+    @include('errors')
     <form action="{{ url('/cats/store') }}" method="POST">
         @csrf
         <label for="name">Name: </label>

@@ -33,6 +33,10 @@ class CatController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'desc' => 'required|string',
+        ]);
         Cat::create([
             'name' => $request->name,
             'desc' => $request->desc,
@@ -46,6 +50,10 @@ class CatController extends Controller
     }
     public function update($id, Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'desc' => 'required|string',
+        ]);
         Cat::findOrFail($id)->update([
             'name' => $request->name,
             'desc' => $request->desc,
