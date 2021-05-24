@@ -5,7 +5,7 @@
 @section('main')
     <h1 class="text-success my-3 py-3">Edit Categoryy</h1>
     @include('errors')
-    <form class="w-75 m-auto" action="{{ url("/cats/update/$cat->id") }}" method="POST">
+    <form class="w-75 m-auto" action="{{ url("/cats/update/$cat->id") }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
         <label for="name">Name: </label>

@@ -32,7 +32,7 @@ class CatController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'desc' => 'required|string',
-            'img' => 'required|image|max:2048|mimes:jpg,ipeg,png',
+            'img' => 'required|image|max:2048|mimes:jpg,jpeg,png',
         ]);
         $imgPath = Storage::putFile("cats", $request->img);
         Cat::create([
@@ -52,7 +52,7 @@ class CatController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'desc' => 'required|string',
-            'img' => 'nullable|image|max:2048|mimes:jpg,ipeg,png',
+            'img' => 'required|image|max:2048|mimes:jpg,jpeg,png',
         ]);
         $cat =  Cat::findOrFail($id);
         $imgPath = $cat->img;
