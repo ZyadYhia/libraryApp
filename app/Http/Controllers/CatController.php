@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CatController extends Controller
 {
@@ -31,10 +32,13 @@ class CatController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'desc' => 'required|string',
+            'img' => 'required|image|max:2048|mimes:jpg,ipeg,png',
         ]);
+        $imgPath = Storage::putFile("cats", $request->img);
         Cat::create([
             'name' => $request->name,
             'desc' => $request->desc,
+            'img' => $imgPath,
         ]);
         return redirect(url('/cats'));
     }
@@ -48,16 +52,26 @@ class CatController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'desc' => 'required|string',
+            'img' => 'nullable|image|max:2048|mimes:jpg,ipeg,png',
         ]);
-        Cat::findOrFail($id)->update([
+        $cat =  Cat::findOrFail($id);
+        $imgPath = $cat->img;
+        if ($request->hasFile('img')) {
+            Storage::delete($imgPath);
+            $imgPath = Storage::putFile("cats", $request->img);
+        }
+        $cat->update([
             'name' => $request->name,
             'desc' => $request->desc,
+            'img' => $imgPath,
         ]);
         return redirect(url('/cats'));
     }
     public function delete($id)
     {
-        Cat::findOrFail($id)->delete();
+        $cat = Cat::findOrFail($id);
+        Storage::delete($cat->img);
+        $cat->delete();
         return redirect(url('/cats'));
     }
 }

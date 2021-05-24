@@ -11,9 +11,11 @@
 </head>
 
 <body>
-    @yield('main')
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-    @yield('page-script')
+    <div class="p-4">
+        @yield('main')
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+        @yield('page-script')
+    </div>
 </body>
 
 </html>
