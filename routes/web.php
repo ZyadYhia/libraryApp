@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatController;
+use App\Models\Cat;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,19 @@ Route::post('/cats/store', [CatController::class, 'store']);
 Route::get('/cats/edit/{id}', [CatController::class, 'edit']);
 Route::post('/cats/update/{id}', [CatController::class, 'update']);
 Route::get('/cats/delete/{id}', [CatController::class, 'delete']);
+Route::get('/cats/latest/{num}', [CatController::class, 'latest']);
+Route::get('/cats/search', [CatController::class, 'search']);
+
+Route::get('/test', function () {
+
+    // $cats = Cat::where('name', '<>', 'history')->count('id');
+
+    // $res = Cat::findOrFail(Cat::max('id'));
+    $res = Cat::orderBy('id', 'DESC')->first();
+
+    dd($res);
+
+    // foreach ($cats as $cat) {
+    //     echo "$cat->id- $cat->name <br>";
+    // }
+});

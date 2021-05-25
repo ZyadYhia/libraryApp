@@ -17,16 +17,22 @@ class CatController extends Controller
         //first paramater in the element of the array to use in view
         return view('cats.index', ['cats' => $cats,]);
     }
+
+
     public function show($id)
     {
         //to get all records from Cats where id = ...
         $cat = Cat::findOrFail($id);
         return view('cats.show', ['cat' => $cat,]);
     }
+
+
     public function create()
     {
         return view('cats.create');
     }
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -42,11 +48,15 @@ class CatController extends Controller
         ]);
         return redirect(url('/cats'));
     }
+
+
     public function edit($id)
     {
         $cat = Cat::findOrFail($id);
         return view('cats.edit', ['cat' => $cat,]);
     }
+
+
     public function update($id, Request $request)
     {
         $request->validate([
@@ -67,11 +77,25 @@ class CatController extends Controller
         ]);
         return redirect(url('/cats'));
     }
+
+
     public function delete($id)
     {
         $cat = Cat::findOrFail($id);
         Storage::delete($cat->img);
         $cat->delete();
         return redirect(url('/cats'));
+    }
+
+    public function latest($num)
+    {
+        $cats = Cat::orderBy('id', 'DESC')->take($num)->get();
+        return view('cats.latest', ['num' => $num, 'cats' => $cats,]);
+    }
+
+    public function search(Request $request)
+    {
+        $cats = Cat::where('name', 'LIKE', "%$request->search%")->get();
+        return view('cats.search', ['cats' => $cats,]);
     }
 }
