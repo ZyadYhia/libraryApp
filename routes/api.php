@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApiCatController;
+use App\Http\Controllers\ApiBookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/cats', [ApiCatController::class, 'index']);
+Route::get('/cats/show/{id}', [ApiCatController::class, 'show']);
+Route::get('/books', [ApiBookController::class, 'index']);
+Route::get('/books/show/{id}', [ApiBookController::class, 'show']);

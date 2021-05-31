@@ -5,7 +5,7 @@
 @section('main')
     <h1 class="text-success my-3 py-3">All Categories</h1>
     <a href="{{ url('/cats/create') }}">Add new category</a>
-    <form action="{{ url('/cats/search') }}" method="get">
+    <form action="{{ url('/cats/search') }}" method="get" class="w-50 m-auto">
         <div class="form-group">
         <label for="search">Name: </label>
         <input class="form-control" type="text" name="search" id="search">
@@ -29,5 +29,6 @@
     <img src="{{ asset("uploads/$cat->img") }}" height="150px">
     <p>{{$cat->desc}}</p>
     <hr>
+    {{$cats->links()}}
     @endforeach
 @endsection

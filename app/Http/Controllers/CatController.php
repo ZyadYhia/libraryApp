@@ -11,7 +11,7 @@ class CatController extends Controller
     public function index()
     {
         //to get all records from Cats
-        $cats = Cat::get();
+        $cats = Cat::paginate(2);
         //see Views folder
         //we can use / or . 
         //first paramater in the element of the array to use in view

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatController;
+use App\Http\Controllers\BookController;
 use App\Models\Cat;
 use Illuminate\Support\Facades\Route;
 
@@ -29,16 +30,28 @@ Route::get('/cats/delete/{id}', [CatController::class, 'delete']);
 Route::get('/cats/latest/{num}', [CatController::class, 'latest']);
 Route::get('/cats/search', [CatController::class, 'search']);
 
-Route::get('/test', function () {
+Route::get('/books', [BookController::class, 'index']);
+Route::get('/books/show/{id}', [BookController::class, 'show']);
+Route::get('/books/create', [BookController::class, 'create']);
+Route::post('/books/store', [BookController::class, 'store']);
 
-    // $cats = Cat::where('name', '<>', 'history')->count('id');
 
-    // $res = Cat::findOrFail(Cat::max('id'));
-    $res = Cat::orderBy('id', 'DESC')->first();
 
-    dd($res);
 
-    // foreach ($cats as $cat) {
-    //     echo "$cat->id- $cat->name <br>";
-    // }
-});
+
+
+
+
+// Route::get('/test', function () {
+
+//     // $cats = Cat::where('name', '<>', 'history')->count('id');
+
+//     // $res = Cat::findOrFail(Cat::max('id'));
+//     $res = Cat::orderBy('id', 'DESC')->first();
+
+//     dd($res);
+
+//     // foreach ($cats as $cat) {
+//     //     echo "$cat->id- $cat->name <br>";
+//     // }
+// });
