@@ -74,7 +74,7 @@ class ApiCatController extends Controller
                 'msg' => '404 not found',
             ], 404);
         }
-        // if the category has some data in another table
+        // if the category has some data in another tabletion
         if ($cat->books->count() > 0) {
             return response()->json([
                 'msg' => 'cannot delete this item, please delete its books first',
