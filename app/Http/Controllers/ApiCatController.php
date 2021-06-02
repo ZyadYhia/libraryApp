@@ -11,7 +11,7 @@ class ApiCatController extends Controller
 {
     public function index()
     {
-        $cats = Cat::all();
+        $cats = Cat::paginate(3);
         return CatResource::collection($cats);
     }
 

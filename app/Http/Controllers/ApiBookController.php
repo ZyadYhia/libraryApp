@@ -10,7 +10,7 @@ class ApiBookController extends Controller
 {
     public function index()
     {
-        $books = Book::all();
+        $books = Book::paginate(3);
         return BookResource::collection($books);
     }
 
