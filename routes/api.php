@@ -22,5 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/cats', [ApiCatController::class, 'index']);
 Route::get('/cats/show/{id}', [ApiCatController::class, 'show']);
+Route::post('/cats/store', [ApiCatController::class, 'store']);
+Route::post('/cats/update/{id}', [ApiCatController::class, 'update']);
+Route::get('/cats/delete/{id}', [ApiCatController::class, 'delete']);
+
 Route::get('/books', [ApiBookController::class, 'index']);
 Route::get('/books/show/{id}', [ApiBookController::class, 'show']);
