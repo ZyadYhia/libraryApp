@@ -4,15 +4,17 @@
 @endsection
 @section('main')
     <h1 class="text-success my-3 py-3">All Categories</h1>
-    <a href="{{ url('/cats/create') }}">Add new category</a>
-    <form action="{{ url('/cats/search') }}" method="get" class="w-50 m-auto">
-        <div class="form-group">
-        <label for="search">Name: </label>
-        <input class="form-control" type="text" name="search" id="search">
-        <br>
-        </div>
-        <input class="form-control" type="submit">
-    </form>
+    @auth
+        <a href="{{ url('/cats/create') }}">Add new category</a>
+        <form action="{{ url('/cats/search') }}" method="get" class="w-50 m-auto">
+            <div class="form-group">
+                <label for="search">Name: </label>
+                <input class="form-control" type="text" name="search" id="search">
+                <br>
+            </div>
+            <input class="form-control" type="submit">
+        </form>
+    @endauth
     @foreach($cats as $cat)
         <h2>
             <a href="{{ url("/cats/show/$cat->id") }}">

@@ -23,7 +23,7 @@ class AuthController extends Controller
         $user = User::Create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->name), //uses Hash::make 
+            'password' => bcrypt($request->password), //uses Hash::make 
         ]);
         Auth::login($user);
         return redirect(url('cats'));
@@ -47,7 +47,7 @@ class AuthController extends Controller
         if (!$isLogin) {
             return back();
         }
-        return redirect(url('cats'));
+        return redirect(url('/cats'));
     }
 
     public function logout()
