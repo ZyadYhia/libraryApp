@@ -17,7 +17,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|uniqid:users,email|max:255',
             'password' => 'required|string|confirmed|min:5|max:30',
         ]);
         $user = User::Create([
@@ -45,8 +45,10 @@ class AuthController extends Controller
             'password' => $request->password
         ]);
         if (!$isLogin) {
+            $request->session()->flash('msg', 'Credentials not correct');
             return back();
         }
+        $request->session()->flash('msg', 'Logged in successfuly');
         return redirect(url('/cats'));
     }
 

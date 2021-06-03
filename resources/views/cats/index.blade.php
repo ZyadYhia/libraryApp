@@ -3,6 +3,11 @@
     All Categories
 @endsection
 @section('main')
+    @if (request()->session()->has('msg'))
+        <div class="alert alert-success">
+           <p>{{request()->session()->get('msg')}}</p>
+        </div>        
+    @endif  
     <h1 class="text-success my-3 py-3">All Categories</h1>
     @auth
         <a href="{{ url('/cats/create') }}">Add new category</a>

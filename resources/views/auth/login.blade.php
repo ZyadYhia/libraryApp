@@ -9,6 +9,12 @@
 
     @include('errors')
 
+    @if (request()->session()->has('msg'))
+        <div class="alert alert-danger">
+            {{request()->session()->get('msg')}}
+        </div>        
+    @endif
+
     <form class="w-75 m-auto" action="{{ url('/login') }}" method="POST">
         @csrf
         <div class="form-group">
